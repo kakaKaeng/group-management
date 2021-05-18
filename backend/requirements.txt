@@ -17,3 +17,5 @@ urllib3==1.25.6
 djangorestframework_simplejwt==4.6.0
 django-filter==2.4.0
 Pillow==8.2.0
+django-model-controller==0.4.1
+drf-writable-nested==0.6.2
