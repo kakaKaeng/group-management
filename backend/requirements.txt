@@ -14,3 +14,6 @@ s3transfer==0.2.1
 six==1.12.0
 sqlparse==0.4.1
 urllib3==1.25.6
+djangorestframework_simplejwt==4.6.0
+django-filter==2.4.0
+Pillow==8.2.0

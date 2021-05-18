@@ -50,9 +50,13 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     'rest_framework',
+    'django_filters'
 ]
 
-LOCAL_APPS = []
+LOCAL_APPS = [
+    'management.apps.commons',
+    'management.apps.profiles'
+]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -90,7 +94,13 @@ WSGI_APPLICATION = 'management.config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {'default': env.db('DATABASE_URL', default='postgres://postgres:postgres@postgres:5432/group_management_db')}
+DATABASES = {
+    'default': env.db(
+        var='DATABASE_URL',
+        default='postgres://postgres:postgres@postgres:5432/group_management_db'
+    ),
+}
+DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 
 # Password validation
@@ -113,14 +123,19 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication'
-    ),
+    # 'DEFAULT_PAGINATION_CLASS': 'memo.apps.commons.paginations.ModifiedPageNumberPagination',
+    # 'PAGE_SIZE': 40,
+    # 'COERCE_DECIMAL_TO_STRING': False,
+
 }
 
 # Internationalization
