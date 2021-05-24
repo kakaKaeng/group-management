@@ -51,12 +51,15 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'rest_framework',
     'django_filters',
-    'django_extensions'
+    'django_extensions',
+    'drf_spectacular'
 ]
 
 LOCAL_APPS = [
     'management.apps.commons',
-    'management.apps.profiles'
+    'management.apps.profiles',
+    'management.apps.orders',
+    'management.apps.customers'
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -91,6 +94,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'management.config.wsgi.application'
 
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Management API',
+    'DESCRIPTION': 'API Descriptions',
+    'VERSION': '1.0.0',
+}
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -135,6 +143,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     # 'DEFAULT_PAGINATION_CLASS': 'memo.apps.commons.paginations.ModifiedPageNumberPagination',
     # 'PAGE_SIZE': 40,
     # 'COERCE_DECIMAL_TO_STRING': False,

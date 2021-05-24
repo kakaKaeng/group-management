@@ -8,10 +8,12 @@ from management.apps.profiles.choices import RoleProfile
 
 
 class Profile(AbstractModelController):
-    user = models.OneToOneField(User,
-                                on_delete=models.CASCADE,
-                                related_name='profile',
-                                **NULL_BLANK)
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        related_name='profile',
+        **NULL_BLANK
+    )
     photo = models.ImageField(
         upload_to=RandomFileName("profile/photo"),
         verbose_name='Photo',
