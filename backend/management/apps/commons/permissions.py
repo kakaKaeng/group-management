@@ -9,4 +9,4 @@ class IsAdminAuthenticated(BasePermission):
     """
 
     def has_permission(self, request, view):
-        return request.user.profile.role == RoleProfile.ADMIN and request.user.is_authenticated
+        return int(request.user.profile.role) == RoleProfile.ADMIN and request.user.is_authenticated

@@ -11,7 +11,7 @@ from management.apps.profiles.serializers import ProfileSerializer
 class ProfileViewSet(ModelViewSet):
     permission_classes = [IsAdminAuthenticated]
     serializer_class = ProfileSerializer
-    queryset = Profile.objects.all().order_by('-id')
+    queryset = Profile.objects.prefetch_related('user').order_by('-id')
 
     @action(detail=False, methods=['GET'], permission_classes=[IsAuthenticated])
     def me(self, request):

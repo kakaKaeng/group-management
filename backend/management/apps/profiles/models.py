@@ -17,7 +17,10 @@ class Profile(AbstractModelController):
         verbose_name='Photo',
         **NULL_BLANK
     )
-    email = models.EmailField(**NULL_BLANK)
     role = models.CharField(choices=RoleProfile.ROLE_TYPE_CHOICES,
                             default=RoleProfile.GENERAL,
                             max_length=25)
+
+    @property
+    def full_name(self) -> str:
+        return f'{self.user.first_name} {self.user.last_name}'

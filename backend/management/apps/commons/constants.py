@@ -10,5 +10,5 @@ FK_NULL_BLANK_SET_NULL = {"on_delete": models.SET_NULL, **NULL_DEFAULT_NONE}
 FK_NULL_BLANK_CASCADE = {"on_delete": models.CASCADE, **NULL_DEFAULT_NONE}
 DECIMAL_PRICE = {"max_digits": 20, "decimal_places": 2, "default": 0}
 
-EXCLUDE_COMMON_FIELDS = ('created_at', 'updated_at', 'created_user', 'updated_user', 'is_deleted')
+EXCLUDE_COMMON_FIELDS = ('created_at', 'updated_at', 'created_user', 'updated_user')
 REQUIRED_FALSE = {'required': False, 'allow_null': True}

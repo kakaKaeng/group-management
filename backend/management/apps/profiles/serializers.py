@@ -7,16 +7,16 @@ from management.apps.profiles.models import Profile
 
 
 class ProfileSerializer(ModelControllerSerializer):
+    full_name = serializers.ReadOnlyField()
+    email = serializers.ReadOnlyField(source='user.email')
 
     class Meta:
         model = Profile
-        fields = '__all__'
+        exclude = EXCLUDE_COMMON_FIELDS
 
 
-class ProfileMeSerializer(serializers.Serializer):
+class ProfileMeSerializer(serializers.ModelSerializer):
     user = UserSerializer()
-
-
 
     class Meta:
         model = Profile
